@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "FPSCharacter.h"
 #include "Engine/World.h"
 
@@ -61,7 +60,7 @@ FHitResult AFPSCharacter::instantShot()
 		endTrace = rayLocation + (rayRotation.Vector() * weaponRange); // player current location + forward direction * weapon range (1000)
 	}
 
-	FCollisionQueryParams traceParams(SCENE_QUERTY_STAT(instantShot), true, Instigator); // default is false, ignore Instigator
+	FCollisionQueryParams traceParams(SCENE_QUERY_STAT(instantShot), true, Instigator); // default is false, ignore Instigator
 	FHitResult hit(ForceInit); // create variable to store result
 	GetWorld()->LineTraceSingleByChannel(hit, rayLocation, endTrace, ECC_Visibility, traceParams);
 

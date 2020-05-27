@@ -15,7 +15,11 @@ public:
 	// Sets default values for this character's properties
 	AFPSCharacter();
 	UPROPERTY(EditAnywhere, Category = "Weapon")
-	float weaponRange{ 1000 };
+	float weaponRange{1000};
+	
+	UFUNCTION(BlueprintCallable, Category = "Weapon")
+	void fireWeapon();
+	
 	
 protected:
 	// Called when the game starts or when spawned

@@ -33,27 +33,38 @@ void AFPSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 
 }
 
+/* Destroy an object */
+//void AFPSCharacter::fireWeapon()
+//{
+//
+//}
 
+
+/*
+Raycast:
+1. Take Instant Shot
+2. Get Location, Rotation from PlayerController
+3. Pass data into back to get endTrace
+*/
 FHitResult AFPSCharacter::instantShot()
 {
 	// vector has x, y, z in 3D Space
 	FVector rayLocation; // shots start from front of camera
 	FRotator rayRotation;
 	FVector endTrace = FVector::ZeroVector;
+	APlayerController* const playerController = GetWorld()->GetFirstPlayerController();
 	// input validation
-	if (playerController)
+	if (playerController) // get endTrace
 	{
 		playerController->GetPlayerViewPoint(rayLocation, rayRotation);
 		// Get and add direction and distance to where we are facing
 		endTrace = rayLocation + (rayRotation.Vector() * weaponRange); // player current location + forward direction * weapon range (1000)
 	}
 
-	FCollisionQueryParams traceParams(SCENE_QUERTY_STAT(instantShot);
+	FCollisionQueryParams traceParams(SCENE_QUERTY_STAT(instantShot), true, Instigator); // default is false, ignore Instigator
+	FHitResult hit(ForceInit); // create variable to store result
+	GetWorld()->LineTraceSingleByChannel(hit, rayLocation, endTrace, ECC_Visibility, traceParams);
 
-
-	APlayerController* const playerController = GetWorld()->GetFirstPlayerController();
-
-
-	return FHitResult();
+	return hit;
 }
 

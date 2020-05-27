@@ -1,11 +1,11 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "Willschar.h"
-#include <Engine/World.h>
+#include "FPSCharacter.h"
+#include "Engine/World.h"
 
 // Sets default values
-AWillschar::AWillschar()
+AFPSCharacter::AFPSCharacter()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -13,28 +13,28 @@ AWillschar::AWillschar()
 }
 
 // Called when the game starts or when spawned
-void AWillschar::BeginPlay()
+void AFPSCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	
 }
 
 // Called every frame
-void AWillschar::Tick(float DeltaTime)
+void AFPSCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
 }
 
 // Called to bind functionality to input
-void AWillschar::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+void AFPSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
 }
 
 
-FHitResult AWillschar::instantShot()
+FHitResult AFPSCharacter::instantShot()
 {
 	// vector has x, y, z in 3D Space
 	FVector rayLocation; // shots start from front of camera
@@ -48,8 +48,7 @@ FHitResult AWillschar::instantShot()
 		endTrace = rayLocation + (rayRotation.Vector() * weaponRange); // player current location + forward direction * weapon range (1000)
 	}
 
-	FCollisionQueryParams traceParams(SCENE_QUERTY_STAT);
-
+	FCollisionQueryParams traceParams(SCENE_QUERTY_STAT(instantShot);
 
 
 	APlayerController* const playerController = GetWorld()->GetFirstPlayerController();
@@ -57,3 +56,4 @@ FHitResult AWillschar::instantShot()
 
 	return FHitResult();
 }
+
